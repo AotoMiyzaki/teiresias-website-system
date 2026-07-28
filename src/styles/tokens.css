@@ -1,0 +1,18 @@
+:root {
+  --color-ink: #161513;
+  --color-charcoal: #20201e;
+  --color-ivory: #f5f1e8;
+  --color-paper: #fbfaf6;
+  --color-bronze: #9a6842;
+  --color-bronze-dark: #70492e;
+  --color-line: #d8d1c5;
+  --color-muted: #706c65;
+  --color-white: #ffffff;
+  --font-serif: 'Noto Serif JP', 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+  --font-sans: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic',
+    sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+  --container: 1200px;
+  --measure: 720px;
+  --header-height: 88px;
+}
