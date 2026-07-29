@@ -7,17 +7,17 @@ import {
 } from 'react-router-dom'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
+import { ApproachPage } from './pages/ApproachPage'
 import { HomePage } from './pages/HomePage'
 import { NotFoundPage } from './pages/NotFoundPage'
+import { ServicesPage } from './pages/ServicesPage'
 import {
-  ApproachPage,
   CaseDetailPage,
   CasesPage,
   CompanyPage,
   ContactPage,
   PrivacyPage,
   ProcessPage,
-  ServicesPage,
 } from './pages/PlaceholderPages'
 import './App.css'
 

@@ -107,18 +107,6 @@ export const processSteps = [
 ]
 
 export const placeholderPages: Record<string, PlaceholderContent> = {
-  '/services': {
-    eyebrow: 'SERVICES',
-    title: '事業内容',
-    description:
-      '会社ごとの業務を整理し、日々の運用に合ったWebシステムを設計・開発します。',
-  },
-  '/approach': {
-    eyebrow: 'OUR APPROACH',
-    title: '開発方針',
-    description:
-      '既存の型を押し付けず、現在の業務と例外を理解することから開発を始めます。',
-  },
   '/cases': {
     eyebrow: 'CASE STUDIES',
     title: '開発事例',

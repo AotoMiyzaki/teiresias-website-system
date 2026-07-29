@@ -1,14 +1,6 @@
 import { PlaceholderPage } from '../components/PlaceholderPage'
 import { placeholderPages } from '../data/siteContent'
 
-export const ServicesPage = () => (
-  <PlaceholderPage content={placeholderPages['/services']} />
-)
-
-export const ApproachPage = () => (
-  <PlaceholderPage content={placeholderPages['/approach']} />
-)
-
 export const CasesPage = () => (
   <PlaceholderPage content={placeholderPages['/cases']} />
 )

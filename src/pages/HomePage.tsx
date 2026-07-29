@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { CodeBackdrop } from '../components/CodeBackdrop'
+import { PageMeta } from '../components/PageMeta'
 import { SectionHeading } from '../components/SectionHeading'
 import { ServiceCard } from '../components/ServiceCard'
 import {
@@ -11,7 +12,12 @@ import {
 
 export function HomePage() {
   return (
-    <main id="main-content" tabIndex={-1}>
+    <>
+      <PageMeta
+        title="TEIRESIAS合同会社 | 会社ごとの業務に合わせたシステム開発"
+        description="標準サービスでは対応しにくい会社独自の業務を、利用しやすいWebシステムへ。TEIRESIAS合同会社は、発注、在庫、多店舗管理、承認などの業務システムを設計・開発します。"
+      />
+      <main id="main-content" tabIndex={-1}>
       <section className="hero-section">
         <CodeBackdrop />
         <div className="hero-section__veil" aria-hidden="true" />
@@ -196,6 +202,7 @@ export function HomePage() {
           </Link>
         </div>
       </section>
-    </main>
+      </main>
+    </>
   )
 }
