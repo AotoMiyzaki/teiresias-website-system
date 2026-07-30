@@ -8,17 +8,14 @@ import {
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
 import { ApproachPage } from './pages/ApproachPage'
+import { CasesPage } from './pages/CasesPage'
+import { CompanyPage } from './pages/CompanyPage'
 import { HomePage } from './pages/HomePage'
 import { NotFoundPage } from './pages/NotFoundPage'
+import { OrderManagementCasePage } from './pages/OrderManagementCasePage'
+import { ProcessPage } from './pages/ProcessPage'
 import { ServicesPage } from './pages/ServicesPage'
-import {
-  CaseDetailPage,
-  CasesPage,
-  CompanyPage,
-  ContactPage,
-  PrivacyPage,
-  ProcessPage,
-} from './pages/PlaceholderPages'
+import { ContactPage, PrivacyPage } from './pages/PlaceholderPages'
 import './App.css'
 
 function RouteEffects() {
@@ -42,7 +39,10 @@ function SiteRoutes() {
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/approach" element={<ApproachPage />} />
         <Route path="/cases" element={<CasesPage />} />
-        <Route path="/cases/order-management" element={<CaseDetailPage />} />
+        <Route
+          path="/cases/order-management"
+          element={<OrderManagementCasePage />}
+        />
         <Route path="/process" element={<ProcessPage />} />
         <Route path="/company" element={<CompanyPage />} />
         <Route path="/contact" element={<ContactPage />} />

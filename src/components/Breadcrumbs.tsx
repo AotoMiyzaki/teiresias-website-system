@@ -1,18 +1,36 @@
 import { Link } from 'react-router-dom'
 
-type BreadcrumbsProps = {
-  current: string
+type BreadcrumbItem = {
+  label: string
+  to?: string
 }
 
-export function Breadcrumbs({ current }: BreadcrumbsProps) {
+type BreadcrumbsProps =
+  | { current: string; items?: undefined }
+  | { items: BreadcrumbItem[]; current?: undefined }
+
+export function Breadcrumbs(props: BreadcrumbsProps) {
+  const items: BreadcrumbItem[] =
+    'items' in props && props.items
+      ? props.items
+      : [{ label: 'トップ', to: '/' }, { label: props.current as string }]
+
   return (
     <nav className="breadcrumbs" aria-label="パンくず">
       <div className="container">
         <ol>
-          <li>
-            <Link to="/">トップ</Link>
-          </li>
-          <li aria-current="page">{current}</li>
+          {items.map((item, index) => {
+            const isLast = index === items.length - 1
+            return (
+              <li key={item.label} aria-current={isLast ? 'page' : undefined}>
+                {!isLast && item.to ? (
+                  <Link to={item.to}>{item.label}</Link>
+                ) : (
+                  item.label
+                )}
+              </li>
+            )
+          })}
         </ol>
       </div>
     </nav>

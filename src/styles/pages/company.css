@@ -1,0 +1,76 @@
+.company-philosophy {
+  background: var(--color-ivory);
+}
+
+.company-philosophy__prose {
+  max-width: var(--measure);
+}
+
+.company-philosophy__prose p {
+  margin-bottom: 0;
+  color: var(--color-muted);
+}
+
+.company-philosophy__prose p + p {
+  margin-top: 24px;
+}
+
+.company-profile {
+  background: var(--color-paper);
+}
+
+.company-profile dl {
+  display: grid;
+  margin: 0;
+  border-top: 1px solid var(--color-line);
+}
+
+.company-profile dl > div {
+  display: grid;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--color-line);
+  grid-template-columns: 160px 1fr;
+}
+
+.company-profile dt {
+  color: var(--color-muted);
+  font-size: 13px;
+}
+
+.company-profile dd {
+  margin: 0;
+  font-size: 15px;
+}
+
+.company-build {
+  background: var(--color-ivory);
+}
+
+.company-build__list {
+  margin: 10px 0 44px;
+  padding: 0;
+  border-top: 1px solid var(--color-line);
+  list-style: none;
+}
+
+.company-build__list li {
+  display: grid;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--color-line);
+  grid-template-columns: 48px 1fr;
+  line-height: 1.65;
+}
+
+.company-build__list span {
+  color: var(--color-bronze-dark);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+@media (max-width: 600px) {
+  .company-profile dl > div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 18px 0;
+  }
+}

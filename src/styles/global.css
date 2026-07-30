@@ -74,6 +74,18 @@ h3 {
   outline-offset: 4px;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
 #root {
   min-height: 100svh;
 }
@@ -98,7 +110,7 @@ h3 {
 }
 
 .eyebrow--light {
-  color: #c58c61;
+  color: var(--color-bronze-light);
 }
 
 .button {

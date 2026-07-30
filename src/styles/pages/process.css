@@ -1,0 +1,123 @@
+.process-steps {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--color-line);
+  list-style: none;
+}
+
+.process-steps li {
+  display: grid;
+  padding: 34px 0;
+  border-bottom: 1px solid var(--color-line);
+  grid-template-columns: 90px minmax(0, 1fr);
+  gap: 30px;
+}
+
+.process-steps__index {
+  margin: 0;
+  color: var(--color-bronze-dark);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+}
+
+.process-steps h3 {
+  margin-bottom: 12px;
+  font-size: 22px;
+}
+
+.process-steps p {
+  max-width: var(--measure);
+  margin-bottom: 0;
+  color: var(--color-muted);
+  font-size: 15px;
+}
+
+.process-review {
+  background: var(--color-ivory);
+}
+
+.process-review__list {
+  margin: 10px 0 40px;
+  padding: 0;
+  border-top: 1px solid var(--color-line);
+  list-style: none;
+}
+
+.process-review__list li {
+  display: grid;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--color-line);
+  grid-template-columns: 48px 1fr;
+  color: var(--color-muted);
+  line-height: 1.65;
+}
+
+.process-review__list span {
+  color: var(--color-bronze-dark);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.process-review__note {
+  max-width: var(--measure);
+  margin: 0;
+  padding-left: 22px;
+  color: var(--color-muted);
+  border-left: 2px solid var(--color-bronze);
+}
+
+.process-stepwise {
+  padding-block: 104px;
+  background: var(--color-paper);
+}
+
+.process-stepwise .container {
+  position: relative;
+  max-width: 900px;
+  padding-left: clamp(28px, 5vw, 72px);
+}
+
+.process-stepwise .container::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: var(--color-bronze);
+  content: '';
+}
+
+.process-stepwise h2 {
+  margin-bottom: 24px;
+  font-size: clamp(32px, 3.6vw, 44px);
+}
+
+.process-stepwise p {
+  margin-bottom: 0;
+  color: var(--color-muted);
+}
+
+@media (max-width: 600px) {
+  .process-steps li {
+    display: block;
+    padding: 28px 0;
+  }
+
+  .process-steps__index {
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .process-review__list {
+    margin-bottom: 32px;
+  }
+
+  .process-stepwise {
+    padding-block: 76px;
+  }
+
+  .process-stepwise .container {
+    padding-left: 24px;
+  }
+}

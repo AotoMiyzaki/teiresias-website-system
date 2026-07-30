@@ -322,7 +322,7 @@
 }
 
 .section-heading--inverse .eyebrow {
-  color: #c58c61;
+  color: var(--color-bronze-light);
 }
 
 .split-intro {
@@ -474,7 +474,7 @@
 
 .case-section__number small {
   margin-top: 14px;
-  color: #c58c61;
+  color: var(--color-bronze-light);
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.2em;
@@ -505,7 +505,7 @@
 }
 
 .case-facts dt {
-  color: #c58c61;
+  color: var(--color-bronze-light);
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.08em;

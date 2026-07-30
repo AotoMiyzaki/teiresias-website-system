@@ -107,30 +107,6 @@ export const processSteps = [
 ]
 
 export const placeholderPages: Record<string, PlaceholderContent> = {
-  '/cases': {
-    eyebrow: 'CASE STUDIES',
-    title: '開発事例',
-    description:
-      '紙やExcelに分散した業務を、会社専用のシステムへ整理した事例をご紹介します。',
-  },
-  '/cases/order-management': {
-    eyebrow: 'CASE STUDY 01',
-    title: '発注・販売管理システム',
-    description:
-      '13店舗のFAX発注をWeb化し、本部での確認から販売管理までを段階的に統合するプロジェクトです。',
-  },
-  '/process': {
-    eyebrow: 'PROCESS',
-    title: '開発の流れ',
-    description:
-      '業務の確認、設計、開発、本番導入、その後の改善まで、一つずつ進めます。',
-  },
-  '/company': {
-    eyebrow: 'COMPANY',
-    title: '会社情報',
-    description:
-      'TEIRESIAS合同会社は、会社ごとの業務に合わせたシステム開発を行っています。',
-  },
   '/contact': {
     eyebrow: 'CONTACT',
     title: 'お問い合わせ',
