@@ -15,8 +15,8 @@ export type Approach = {
   description: string
 }
 
-export type PlaceholderContent = {
-  eyebrow: string
+export type BusinessFlowItem = {
+  number: string
   title: string
   description: string
 }
@@ -35,6 +35,51 @@ export const gapItems = [
   '担当者ごとに分かれたExcel',
   '会社独自の承認・計算ルール',
   '店舗や部署ごとに異なる運用',
+]
+
+export const businessFlow: BusinessFlowItem[] = [
+  {
+    number: '01',
+    title: '注文',
+    description:
+      'FAX、電話、メール、手書きなどに分散した注文情報を、一つのシステムへ集約する。',
+  },
+  {
+    number: '02',
+    title: '調達',
+    description:
+      '在庫や販売計画から必要量を算出し、次の仕入れへつなげる。',
+  },
+  {
+    number: '03',
+    title: '入荷',
+    description:
+      '発注内容と実際の納品を照合し、在庫へ反映する。',
+  },
+  {
+    number: '04',
+    title: '在庫',
+    description:
+      '納品、製造、販売、廃棄などの変化を反映し、理論在庫を更新する。',
+  },
+  {
+    number: '05',
+    title: '製造',
+    description:
+      '販売計画と在庫から必要な製造量や作業を決める。',
+  },
+  {
+    number: '06',
+    title: '販売',
+    description:
+      '販売情報を在庫・製造・損益へつなぎ、二重入力を減らす。',
+  },
+  {
+    number: '07',
+    title: '損益',
+    description:
+      '売上、原価、廃棄、人件費などをつなぎ、収益を把握する。',
+  },
 ]
 
 export const approaches: Approach[] = [
@@ -61,65 +106,51 @@ export const approaches: Approach[] = [
 export const services: Service[] = [
   {
     number: '01',
-    title: '発注・受注管理',
+    title: '受発注・注文管理',
     description:
-      '店舗や担当者からの依頼、確認、承認、発注状況を一つの画面で管理します。',
+      '社内外に分散した注文、確認、承認、対応履歴を一つにつなげます。',
   },
   {
     number: '02',
-    title: '在庫・商品管理',
-    description: '商品情報、在庫、入出庫、棚卸などの情報を一元管理します。',
+    title: '在庫・製造管理',
+    description:
+      '原材料から完成品までの在庫変動と、製造計画・実績を管理します。',
   },
   {
     number: '03',
-    title: '多店舗管理',
+    title: '仕入・納品管理',
     description:
-      '複数店舗の発注、売上、在庫、報告状況を本部から確認できるようにします。',
+      '必要量の算出から仕入先への発注、検品、請求照合までを整理します。',
   },
   {
     number: '04',
-    title: '販売・売上管理',
+    title: '販売・損益管理',
     description:
-      '販売実績、売上報告、集計、CSV出力など、日々の管理業務を効率化します。',
+      '販売情報を在庫や原価へつなぎ、店舗別・商品別の収益を把握します。',
   },
   {
     number: '05',
-    title: '申請・承認管理',
+    title: '多店舗・人員管理',
     description:
-      '申請、確認、承認、差し戻しなど、紙やメールで行われている手続きをシステム化します。',
+      '店舗ごとの状況と、販売・製造計画に応じた人員配置を横断して管理します。',
   },
   {
     number: '06',
     title: '独自業務システム',
     description:
-      '既存サービスでは対応できない会社独自の業務フローを、必要な機能から設計します。',
+      '独自の承認、計算、単位、帳票を含む業務フローを個別に設計します。',
   },
 ]
 
 export const processSteps = [
   '相談',
-  '業務の確認',
+  '業務確認',
   '設計・見積り',
   '開発',
   '確認・修正',
   '本番導入',
   '保守・改善',
 ]
-
-export const placeholderPages: Record<string, PlaceholderContent> = {
-  '/contact': {
-    eyebrow: 'CONTACT',
-    title: 'お問い合わせ',
-    description:
-      '標準サービスでは対応しにくかった業務や、現在の運用についてお聞かせください。',
-  },
-  '/privacy': {
-    eyebrow: 'PRIVACY POLICY',
-    title: 'プライバシーポリシー',
-    description:
-      'TEIRESIAS合同会社における個人情報の取り扱いについてご案内します。',
-  },
-}
 
 export const codeColumns = [
   ['type Approval = "pending" | "approved";', 'const branch = workflow.current;', 'return validate(request);'],

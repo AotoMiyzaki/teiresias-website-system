@@ -85,10 +85,7 @@ export function CasesPage() {
           </div>
         </section>
 
-        <PageCta
-          title="現在の業務について、お聞かせください。"
-          description="紙、FAX、Excelに残る業務や、既存サービスでは対応できなかった運用を確認します。"
-        />
+        <PageCta />
       </main>
     </>
   )

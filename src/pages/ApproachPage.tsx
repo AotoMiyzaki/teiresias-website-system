@@ -217,10 +217,7 @@ export function ApproachPage() {
           </div>
         </section>
 
-        <PageCta
-          title="標準サービスでは対応できなかった業務について、ご相談ください。"
-          description="現在の業務、利用者、例外処理を確認し、会社に合った形を整理します。"
-        />
+        <PageCta />
       </main>
     </>
   )

@@ -5,6 +5,7 @@ import { SectionHeading } from '../components/SectionHeading'
 import { ServiceCard } from '../components/ServiceCard'
 import {
   approaches,
+  businessFlow,
   gapItems,
   processSteps,
   services,
@@ -15,27 +16,27 @@ export function HomePage() {
     <>
       <PageMeta
         title="TEIRESIAS合同会社 | 会社ごとの業務に合わせたシステム開発"
-        description="標準サービスでは対応しにくい会社独自の業務を、利用しやすいWebシステムへ。TEIRESIAS合同会社は、発注、在庫、多店舗管理、承認などの業務システムを設計・開発します。"
+        description="FAX、電話、Excelに分かれた業務をひとつにつなぐ。受発注、在庫、製造、販売、損益まで、会社固有の業務に合わせたシステムを設計・開発します。"
       />
       <main id="main-content" tabIndex={-1}>
       <section className="hero-section">
         <CodeBackdrop />
         <div className="hero-section__veil" aria-hidden="true" />
         <div className="container hero-section__content">
-          <p className="eyebrow eyebrow--light">CUSTOM BUSINESS SYSTEMS</p>
+          <p className="eyebrow">CUSTOM BUSINESS SYSTEMS</p>
           <h1>会社を、システムに合わせない。</h1>
           <p className="hero-section__lead">
-            独自の業務、複雑な承認、店舗ごとの違い。
+            FAX、電話、Excelに分かれた業務を、ひとつにつなぐ。
             <br />
-            標準サービスでは対応しにくい業務を、
+            受発注、在庫、製造、販売、損益まで。
             <br />
-            会社ごとに使いやすいWebシステムへ。
+            会社固有の業務に合わせたシステムを設計・開発します。
           </p>
           <div className="hero-section__actions">
-            <Link className="button button--light" to="/services">
+            <Link className="button button--primary" to="/services">
               事業内容を見る
             </Link>
-            <Link className="button button--outline-light" to="/contact">
+            <Link className="button button--outline" to="/contact">
               開発について相談する
             </Link>
           </div>
@@ -50,12 +51,14 @@ export function HomePage() {
         <div className="container split-intro">
           <SectionHeading
             eyebrow="THE GAP"
-            title="標準化からこぼれる業務があります。"
+            title={'大企業には、業務を支える専用システムがある。\n多くの中小企業には、FAXとExcelが残っている。'}
           />
           <div className="split-intro__body">
             <p>
-              一般的なシステムは、多くの会社が利用できる共通フォーマットを前提に作られています。
-              しかし実際の現場には、会社独自の承認方法、店舗ごとの違い、特殊な計算、紙やExcelでしか管理できていない業務があります。
+              紙、FAX、電話、Excel。それぞれの方法が悪いのではなく、業務が分散し、同じ情報を何度も入力・確認することが問題です。
+            </p>
+            <p>
+              TEIRESIASは、会社ごとに残っている独自の業務を整理し、ひとつのWebシステムへつなげます。
             </p>
             <ul className="gap-list">
               {gapItems.map((item, index) => (
@@ -69,11 +72,30 @@ export function HomePage() {
         </div>
       </section>
 
+      <section className="section business-flow-section">
+        <div className="container">
+          <SectionHeading
+            eyebrow="BUSINESS FLOW"
+            title={'一つの業務だけでなく、\nその前後までつなぐ。'}
+            description="一度入力した情報が次の業務へ渡る構造をつくり、転記や確認の重複を減らします。必要な領域から始め、会社の運用に合わせて接続範囲を広げます。"
+          />
+          <ol className="business-flow">
+            {businessFlow.map((item) => (
+              <li key={item.number}>
+                <span>{item.number}</span>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
       <section className="section section--ivory">
         <div className="container">
           <SectionHeading
             eyebrow="OUR APPROACH"
-            title="フォーマットではなく、その会社の業務からつくる。"
+            title={'フォーマットではなく、\nその会社の業務からつくる。'}
             description="既存システムの使い方を会社に合わせてもらうのではなく、現在の業務を理解し、その会社が実際に利用しやすい形を設計します。"
           />
           <div className="approach-grid">
@@ -95,8 +117,8 @@ export function HomePage() {
         <div className="container">
           <SectionHeading
             eyebrow="SERVICES"
-            title="現場の業務を、使える仕組みに変える。"
-            description="紙、FAX、Excel、複数のサービスに分散している業務を整理し、ブラウザから利用できる会社専用のシステムを開発します。"
+            title={'業務を、一つずつではなく、\nつながる仕組みとして設計する。'}
+            description="代表的な開発領域です。業種を限定せず、現在の運用と課題から必要な範囲を組み立てます。"
           />
           <div className="services-grid">
             {services.map((service) => (
@@ -116,7 +138,6 @@ export function HomePage() {
             <SectionHeading
               eyebrow="CASE STUDY"
               title={'13店舗のFAX発注を、\nひとつのWebシステムへ。'}
-              inverse
             />
             <p className="case-section__description">
               食品小売・惣菜販売企業で行われていたFAX中心の発注業務をWeb化。
@@ -140,7 +161,7 @@ export function HomePage() {
                 <dd>開発・導入中</dd>
               </div>
             </dl>
-            <Link className="text-link text-link--light" to="/cases/order-management">
+            <Link className="text-link" to="/cases/order-management">
               事例を見る
             </Link>
           </div>
@@ -192,12 +213,12 @@ export function HomePage() {
 
       <section className="contact-cta">
         <div className="container contact-cta__inner">
-          <p className="eyebrow eyebrow--light">CONTACT</p>
+          <p className="eyebrow">CONTACT</p>
           <h2>標準サービスでは対応できなかった業務について、ご相談ください。</h2>
           <p>
-            紙、FAX、Excel、複数のサービスに分散した業務を確認し、会社に合った形を設計します。
+            紙、FAX、Excel、既存サービスに分散している業務を確認し、会社に合った形へ整理・設計します。
           </p>
-          <Link className="button button--light" to="/contact">
+          <Link className="button button--primary" to="/contact">
             開発について相談する
           </Link>
         </div>

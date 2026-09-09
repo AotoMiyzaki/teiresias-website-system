@@ -15,7 +15,7 @@ import { NotFoundPage } from './pages/NotFoundPage'
 import { OrderManagementCasePage } from './pages/OrderManagementCasePage'
 import { ProcessPage } from './pages/ProcessPage'
 import { ServicesPage } from './pages/ServicesPage'
-import { ContactPage, PrivacyPage } from './pages/PlaceholderPages'
+import { ContactPage, PrivacyPage } from './pages/ContentPages'
 import './App.css'
 
 function RouteEffects() {
@@ -33,6 +33,9 @@ function SiteRoutes() {
   return (
     <>
       <RouteEffects />
+      <a className="skip-link" href="#main-content">
+        本文へ移動
+      </a>
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />

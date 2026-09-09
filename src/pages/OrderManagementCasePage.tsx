@@ -262,10 +262,7 @@ export function OrderManagementCasePage() {
           </div>
         </section>
 
-        <PageCta
-          title="紙やFAXに残る業務を、現在の運用から整理します。"
-          description="入力する人、確認する人、例外処理を確認し、最初にシステム化する範囲を決めます。"
-        />
+        <PageCta />
       </main>
     </>
   )

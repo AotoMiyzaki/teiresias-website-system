@@ -16,7 +16,7 @@ export function NotFoundPage() {
           <p>
             URLが変更されたか、ページが削除された可能性があります。
           </p>
-          <Link className="button button--dark" to="/">
+          <Link className="button button--primary" to="/">
             トップページへ戻る
           </Link>
         </div>

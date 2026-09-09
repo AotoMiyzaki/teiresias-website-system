@@ -47,6 +47,10 @@
   background: var(--color-ivory);
 }
 
+.case-detail-page .development-scope {
+  background: var(--color-ivory);
+}
+
 .system-structure__grid {
   display: grid;
   margin-top: 10px;

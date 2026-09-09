@@ -6,134 +6,39 @@ import { PageMeta } from '../components/PageMeta'
 import '../styles/pages/detail-page.css'
 import '../styles/pages/services.css'
 
-type ServiceDetail = {
-  number: string
-  title: string
-  description: string
-  capabilities: string[]
-  note?: string
-}
-
-const serviceDetails: ServiceDetail[] = [
-  {
-    number: '01',
-    title: '発注・受注管理',
-    description:
-      '店舗や担当者からの依頼、内容確認、承認、差し戻し、発注状況を一つのシステムで管理します。紙やFAXで分散していた情報を、店舗と本部の双方から確認できる状態にします。',
-    capabilities: [
-      '店舗・担当者からの発注入力',
-      '内容確認と承認',
-      '差し戻しとコメント',
-      '発注履歴の保存',
-      '店舗別・商品別の一覧',
-      'CSV・帳票出力',
-    ],
-  },
-  {
-    number: '02',
-    title: '在庫・商品管理',
-    description:
-      '商品情報、在庫、入出庫、棚卸などの情報を一元管理します。会社独自の商品分類、単位、販売方法にも合わせて設計します。',
-    capabilities: [
-      '商品マスタ',
-      '在庫数の記録',
-      '入庫・出庫管理',
-      '棚卸入力',
-      '店舗別在庫',
-      '在庫差異の確認',
-    ],
-  },
-  {
-    number: '03',
-    title: '多店舗管理',
-    description:
-      '複数店舗の発注、売上、在庫、廃棄、報告状況などを、本部から横断的に確認できるようにします。店舗ごとの差異を残しながら、全体を比較できる形へ整理します。',
-    capabilities: [
-      '全店舗の一覧',
-      '店舗別の詳細画面',
-      '店舗間比較',
-      '報告状況の確認',
-      '店舗ごとの権限設定',
-      '本部向け集計画面',
-    ],
-  },
-  {
-    number: '04',
-    title: '販売・売上管理',
-    description:
-      '販売実績や売上報告を記録し、店舗別、期間別、商品別に確認できるようにします。手作業で行われていた集計や転記を減らします。',
-    capabilities: [
-      '日次売上報告',
-      '店舗別売上',
-      '商品別売上',
-      '期間別集計',
-      'CSV出力',
-      '売上データの比較',
-    ],
-    note:
-      '外部のPOS、レジ、会計サービスとの連携は、各サービスのAPIや出力仕様を確認したうえで対応範囲を決定します。',
-  },
-  {
-    number: '05',
-    title: '申請・承認管理',
-    description:
-      '申請、確認、承認、差し戻しなど、紙、メール、口頭で行われている社内手続きをシステム化します。会社独自の承認順序や権限にも対応します。',
-    capabilities: [
-      '申請フォーム',
-      '承認者の設定',
-      '複数段階の承認',
-      '差し戻し',
-      'コメント',
-      '申請履歴',
-    ],
-  },
-  {
-    number: '06',
-    title: '独自業務システム',
-    description:
-      '既存サービスでは対応できない会社独自の業務フローを確認し、必要な画面、権限、計算、帳票を個別に設計します。',
-    capabilities: [
-      '独自の計算処理',
-      '会社専用の入力画面',
-      '独自帳票',
-      '部署・店舗別の権限',
-      '既存データの取り込み',
-      '段階的な機能追加',
-    ],
-  },
+const coreAreas = [
+  { number: '01', title: '受発注・注文管理', description: 'FAX、電話、メール、紙に分かれた注文を集約し、受付から確認、承認、対応履歴までを同じ情報で管理します。' },
+  { number: '02', title: '在庫・商品・資材管理', description: '商品、原材料、半製品、完成品の入出庫を記録し、店舗や拠点ごとの理論在庫を把握できる形へ整理します。' },
+  { number: '03', title: '製造・生産・作業管理', description: '販売計画と在庫をもとに製造量や作業を組み立て、指示、実績、歩留まりを次の計画へつなげます。' },
+  { number: '04', title: '仕入・入荷・検品管理', description: '必要量の算出、仕入先への発注、納品、検品、請求照合をつなぎ、数量や金額の差異を確認します。' },
+  { number: '05', title: '販売・売上・損益管理', description: '販売実績を在庫、原価、廃棄、人件費などと結び、店舗別・商品別・期間別に収益を確認します。' },
+  { number: '06', title: '多店舗・人員・承認管理', description: '店舗や部署ごとの状況、権限、承認、報告、人員配置を、本部から横断して確認できる構造にします。' },
+  { number: '07', title: '独自業務システム', description: '会社固有の計算、単位、帳票、例外処理を確認し、既存の型では扱いにくい業務を個別に設計します。' },
+  { number: '08', title: '外部システム・既存データ連携', description: 'POS、会計、既存サービス、CSVなどの仕様を確認し、可能な範囲でデータの取り込みと受け渡しを設計します。' },
 ]
 
-const commonCapabilities = [
-  'アカウント管理',
-  '店舗・部署・担当者ごとの権限',
-  '商品・店舗・取引先などのマスタ管理',
-  '検索・絞り込み',
-  'CSV入出力',
-  'PDF・帳票出力',
-  '操作履歴',
-  'コメント・差し戻し',
-  'パソコン・タブレット・スマートフォン対応',
-  '保守・機能追加',
+const mainFlow = [
+  { area: '注文', system: '社内受発注、外部注文取込', description: '社内外に分散しているFAX、電話、メール、手書き注文などを一つのシステムに集約し、注文内容と対応履歴を可視化する。' },
+  { area: '調達', system: '発注提案、仕入先発注', description: '現在庫、販売計画、製造予定、納品日を基に必要な仕入量を計算し、過剰発注と欠品を抑える。' },
+  { area: '入荷', system: '検品、納品、請求照合', description: '発注内容、実際の納品数量、納品書、請求書を連動させ、数量や金額の差異を確認する。' },
+  { area: '在庫', system: '原材料・半製品・完成品の理論在庫', description: '納品、製造、販売、廃棄、移動による在庫変動を反映し、店舗や製造拠点に何がどれだけあるかを理論値で把握する。' },
+  { area: '製造', system: '製造計画、作業指示、製造実績', description: '販売計画と在庫から必要な製造量、回転数、開始時刻を算出し、現場を計画どおりに動かす。' },
+  { area: '配分', system: '店舗配分、店舗間移動', description: '各店舗の販売見込みと在庫状況から商品を適切に配分し、余剰在庫を不足店舗へ移動させる。' },
+  { area: '鮮度', system: '消費期限、ロット、売り切り管理', description: '数量だけでなく製造日、消費期限、ロットを管理し、期限切れや廃棄を防ぐための販売・移動判断を支援する。' },
+  { area: '販売', system: 'POS連携、予約、外部受注', description: '店頭販売、予約、外部からの注文を一つの販売データとしてまとめ、在庫や製造計画へ反映する。' },
+  { area: '経営', system: '損益、需要予測、人件費', description: '売上、原価、廃棄、決済手数料、人件費を統合し、店舗別・商品別に利益と今後の販売見込みを把握する。' },
+]
+
+const supportLayer = [
+  { area: '人員', system: '必要人数、配置、作業割当', description: '販売予測と製造計画から必要な人数を算出し、時間帯や業務内容に応じて人員を配置する。' },
+  { area: '基盤', system: 'レシピ・規格・単位・歩留まり管理', description: '会社固有のレシピ、使用量、製造単位、発注単位、歩留まりを一元管理し、在庫・原価・製造計算の基準を統一する。' },
+  { area: '統制', system: '承認、例外対応、履歴、権限', description: '承認が必要な業務や異常発生時の対応を担当者へ回し、誰がいつ何を判断したかを履歴として残す。' },
 ]
 
 const developmentSteps = [
-  {
-    number: '01',
-    title: '現在の業務を確認',
-    description: '紙、Excel、既存サービス、担当者の作業を確認します。',
-  },
-  {
-    number: '02',
-    title: '優先する業務を決定',
-    description:
-      '負担や損失が大きい部分から、最初の開発範囲を決めます。',
-  },
-  {
-    number: '03',
-    title: '運用しながら拡張',
-    description:
-      '実際の利用状況を確認し、必要な機能を追加します。',
-  },
+  { number: '01', title: '現在の業務を確認', description: '紙、Excel、既存サービス、担当者の作業を確認します。' },
+  { number: '02', title: '優先する業務を決定', description: '負担や損失が大きい部分から、最初の開発範囲を決めます。' },
+  { number: '03', title: '運用しながら拡張', description: '実際の利用状況を確認し、必要な機能を追加します。' },
 ]
 
 export function ServicesPage() {
@@ -141,114 +46,97 @@ export function ServicesPage() {
     <>
       <PageMeta
         title="事業内容 | TEIRESIAS合同会社"
-        description="発注、在庫、多店舗管理、販売、承認など、会社ごとの業務に合わせたWebシステムを設計・開発します。"
+        description="受発注、在庫、製造、仕入、販売、損益、多店舗管理など、会社固有の業務がつながるWebシステムを設計・開発します。"
       />
       <main id="main-content" className="detail-page services-page" tabIndex={-1}>
         <Breadcrumbs current="事業内容" />
         <DetailPageHero
           eyebrow="SERVICES"
-          title={'会社ごとの業務を、\n必要な機能からシステムへ。'}
-          description="紙、FAX、Excel、複数のサービスに分散している業務を整理し、会社の運用に合わせたWebシステムを設計・開発します。既存のフォーマットをそのまま導入するのではなく、現在の業務と利用者を確認したうえで、必要な機能を組み立てます。"
+          title={'業務を、一つずつではなく、\nつながる仕組みとして設計する。'}
+          description="受発注だけ、在庫だけ、売上だけを別々に管理するのではなく、一度入力されたデータが次の業務へつながるシステムを設計します。必要な部分から導入し、会社の運用に合わせて段階的に拡張できます。"
           number="01"
         />
 
         <section className="detail-statement" aria-labelledby="services-statement">
           <div className="container">
-            <p className="eyebrow">FROM OPERATIONS</p>
-            <h2 id="services-statement">
-              機能から選ぶのではなく、
-              <br />
-              業務から必要な機能を決める。
-            </h2>
+            <p className="eyebrow">CONNECTED OPERATIONS</p>
+            <h2 id="services-statement">機能を並べるのではなく、<br />情報が次の業務へ渡る構造をつくる。</h2>
           </div>
         </section>
 
-        <div className="service-details">
-          {serviceDetails.map((service) => (
-            <section
-              className="service-detail"
-              aria-labelledby={`service-${service.number}`}
-              key={service.number}
-            >
-              <div className="container service-detail__grid">
-                <div className="service-detail__summary">
-                  <p className="service-detail__label">
-                    SERVICES {service.number}
-                  </p>
-                  <h2 id={`service-${service.number}`}>{service.title}</h2>
-                  <p>{service.description}</p>
-                  {service.note && (
-                    <p className="service-detail__note">{service.note}</p>
-                  )}
-                </div>
-                <div className="service-detail__capabilities">
-                  <h3>できること</h3>
-                  <ul>
-                    {service.capabilities.map((capability, index) => (
-                      <li key={capability}>
-                        <span aria-hidden="true">
-                          {String(index + 1).padStart(2, '0')}
-                        </span>
-                        {capability}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </section>
-          ))}
-        </div>
-
-        <section
-          className="detail-section common-capabilities"
-          aria-labelledby="common-capabilities-title"
-        >
+        <section className="detail-section core-development" aria-labelledby="core-title">
           <div className="container">
             <header className="detail-section__heading">
-              <p className="eyebrow">COMMON FUNCTIONS</p>
-              <h2 id="common-capabilities-title">
-                業務に合わせて、共通機能も組み合わせます。
-              </h2>
+              <p className="eyebrow">CORE DEVELOPMENT AREAS</p>
+              <h2 id="core-title">会社ごとの課題から選ぶ、主要な開発領域。</h2>
+              <p>業種を限定した製品一覧ではありません。現在の業務を確認し、必要な領域とそのつながりを会社ごとに設計します。</p>
             </header>
-            <ol className="common-capabilities__grid">
-              {commonCapabilities.map((capability, index) => (
-                <li key={capability}>
-                  <span aria-hidden="true">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  {capability}
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-
-        <section
-          className="detail-section development-scope"
-          aria-labelledby="development-scope-title"
-        >
-          <div className="container">
-            <header className="detail-section__heading">
-              <p className="eyebrow">SCOPE</p>
-              <h2 id="development-scope-title">
-                最初から、すべてを作る必要はありません。
-              </h2>
-              <p>
-                業務全体を一度に置き換えるのではなく、現在の負担が大きい部分、情報が把握できていない部分、転記や確認に時間がかかっている部分から開発範囲を決めます。最初の導入後も、利用状況に合わせて機能を追加できます。
-              </p>
-            </header>
-            <div className="numbered-feature-list numbered-feature-list--three">
-              {developmentSteps.map((step) => (
-                <NumberedFeature key={step.number} {...step} />
+            <div className="core-areas">
+              {coreAreas.map((area) => (
+                <article className="core-area" key={area.number}>
+                  <p>{area.number}</p>
+                  <div><h3>{area.title}</h3><p>{area.description}</p></div>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        <PageCta
-          title="現在の業務から、必要なシステムを整理します。"
-          description="作りたい機能がまだ明確でなくても、現在の運用と課題から開発範囲を整理できます。"
-        />
+        <section className="detail-section connected-operations" aria-labelledby="flow-title">
+          <div className="container">
+            <header className="detail-section__heading">
+              <p className="eyebrow">CONNECTED OPERATION EXAMPLE</p>
+              <h2 id="flow-title">業務がつながる開発例。</h2>
+              <p>食品小売・多店舗企業などを想定した設計例です。完成済みの製品ではなく、各社の運用に合わせて必要な範囲を組み立てます。</p>
+            </header>
+            <ol className="connected-flow">
+              {mainFlow.map((item, index) => (
+                <li key={item.area}>
+                  <p className="connected-flow__index">{String(index + 1).padStart(2, '0')}</p>
+                  <p className="connected-flow__area">{item.area}</p>
+                  <div><h3>{item.system}</h3><p>{item.description}</p></div>
+                </li>
+              ))}
+            </ol>
+
+            <div className="support-layer">
+              <header><p className="eyebrow">SUPPORT LAYER</p><h3>業務全体を支える共通基盤</h3></header>
+              <div>
+                {supportLayer.map((item) => (
+                  <article key={item.area}>
+                    <p className="support-layer__area">{item.area}</p>
+                    <h4>{item.system}</h4>
+                    <p>{item.description}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <aside className="inventory-example" aria-labelledby="inventory-example-title">
+              <div>
+                <p className="eyebrow">FOOD / MULTI-STORE EXAMPLE</p>
+                <h3 id="inventory-example-title">理論在庫を、次の判断へつなげる。</h3>
+                <p>販売、完成品、半製品、原材料、発注、次回製造までの変化を一つの流れとして捉える、開発可能な構成例です。</p>
+              </div>
+              <p className="inventory-example__flow">販売 <span>完成品在庫</span> <span>半製品</span> <span>原材料</span> <span>発注</span> <span>次回製造</span></p>
+            </aside>
+          </div>
+        </section>
+
+        <section className="detail-section development-scope" aria-labelledby="development-scope-title">
+          <div className="container">
+            <header className="detail-section__heading">
+              <p className="eyebrow">SCOPE</p>
+              <h2 id="development-scope-title">最初から、すべてを作る必要はありません。</h2>
+              <p>負担が大きい部分、情報が把握できていない部分、転記や確認に時間がかかる部分から開発範囲を決めます。導入後も利用状況に合わせて接続する業務を広げられます。</p>
+            </header>
+            <div className="numbered-feature-list numbered-feature-list--three">
+              {developmentSteps.map((step) => <NumberedFeature key={step.number} {...step} />)}
+            </div>
+          </div>
+        </section>
+
+        <PageCta />
       </main>
     </>
   )

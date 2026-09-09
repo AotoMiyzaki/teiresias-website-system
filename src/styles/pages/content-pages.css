@@ -1,0 +1,153 @@
+.contact-status,
+.privacy-status {
+  padding-block: 100px;
+  background: var(--color-paper);
+}
+
+.contact-status__inner,
+.privacy-status__inner {
+  position: relative;
+  max-width: 920px;
+  padding-left: clamp(28px, 5vw, 72px);
+}
+
+.contact-status__inner::before,
+.privacy-status__inner::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: var(--color-bronze);
+  content: '';
+}
+
+.contact-status h2,
+.privacy-status h2 {
+  margin-bottom: 24px;
+  font-size: clamp(34px, 3.6vw, 46px);
+}
+
+.contact-status__inner > p:last-child,
+.privacy-status__inner > p:last-child {
+  max-width: var(--measure);
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.consultation-topics,
+.privacy-preparation {
+  background: var(--color-ivory);
+}
+
+.content-split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(360px, 1.15fr);
+  gap: clamp(60px, 8vw, 120px);
+}
+
+.content-split .detail-section__heading {
+  margin-bottom: 0;
+}
+
+.content-list {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--color-ink);
+  list-style: none;
+}
+
+.content-list li {
+  display: grid;
+  padding: 19px 0;
+  border-bottom: 1px solid var(--color-line);
+  grid-template-columns: 50px 1fr;
+  line-height: 1.7;
+}
+
+.content-list span,
+.consultation-steps span {
+  color: var(--color-bronze-dark);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+.consultation-process {
+  background: var(--color-paper);
+}
+
+.consultation-steps {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--color-ink);
+  list-style: none;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.consultation-steps li {
+  min-height: 230px;
+  padding: 28px 24px;
+  border-right: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.consultation-steps li:first-child {
+  border-left: 1px solid var(--color-line);
+}
+
+.consultation-steps h3 {
+  margin: 38px 0 15px;
+  font-size: 20px;
+}
+
+.consultation-steps p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .content-split {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .consultation-steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-status,
+  .privacy-status {
+    padding-block: 76px;
+  }
+
+  .contact-status__inner,
+  .privacy-status__inner {
+    padding-left: 24px;
+  }
+
+  .contact-status h2,
+  .privacy-status h2 {
+    font-size: 32px;
+  }
+
+  .consultation-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .consultation-steps li,
+  .consultation-steps li:first-child {
+    min-height: 0;
+    padding: 24px 0;
+    border-right: 0;
+    border-left: 0;
+  }
+
+  .consultation-steps h3 {
+    margin: 16px 0 9px;
+  }
+}

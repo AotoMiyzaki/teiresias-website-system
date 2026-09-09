@@ -55,9 +55,9 @@
 }
 
 .detail-hero h1 {
-  max-width: 900px;
+  max-width: 980px;
   margin-bottom: 38px;
-  font-size: clamp(48px, 5vw, 66px);
+  font-size: clamp(42px, 3.7vw, 50px);
   line-height: 1.45;
   letter-spacing: 0.045em;
   white-space: pre-line;
@@ -100,7 +100,7 @@
 .detail-statement h2 {
   max-width: 1000px;
   margin-bottom: 0;
-  font-size: clamp(38px, 4.2vw, 56px);
+  font-size: clamp(36px, 3.7vw, 50px);
 }
 
 .detail-section {
@@ -115,7 +115,7 @@
 .detail-section__heading h2,
 .system-decision h2 {
   margin-bottom: 0;
-  font-size: clamp(38px, 4vw, 52px);
+  font-size: clamp(36px, 3.6vw, 48px);
 }
 
 .detail-section__heading > p:last-child {
@@ -193,10 +193,9 @@
 
 .detail-cta {
   padding-block: 110px;
-  color: var(--color-white);
-  background:
-    linear-gradient(112deg, rgb(32 32 30 / 98%), rgb(82 55 38 / 95%)),
-    var(--color-charcoal);
+  color: var(--color-ink);
+  background: var(--color-paper);
+  border-top: 1px solid var(--color-line);
 }
 
 .detail-cta__inner {
@@ -220,7 +219,7 @@
 .detail-cta p:not(.eyebrow) {
   max-width: 680px;
   margin-bottom: 0;
-  color: rgb(255 255 255 / 68%);
+  color: var(--color-muted);
 }
 
 .detail-cta .button {
