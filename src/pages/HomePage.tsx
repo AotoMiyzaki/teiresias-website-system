@@ -2,227 +2,293 @@ import { Link } from 'react-router-dom'
 import { CodeBackdrop } from '../components/CodeBackdrop'
 import { PageMeta } from '../components/PageMeta'
 import { SectionHeading } from '../components/SectionHeading'
-import { ServiceCard } from '../components/ServiceCard'
-import {
-  approaches,
-  businessFlow,
-  gapItems,
-  processSteps,
-  services,
-} from '../data/siteContent'
+
+const reasons = [
+  {
+    number: '01',
+    title: '少人数で一気通貫',
+    description:
+      '営業、設計、開発を何層にも分けず、意思決定と実装を近づけます。大人数を前提にしないことで、伝達にかかる時間と開発工数を抑えます。',
+  },
+  {
+    number: '02',
+    title: 'AIを活用した開発工程',
+    description:
+      '人が業務を理解し、何を作るかを判断する。そのうえでAIを設計、実装、検証、修正の支援に活用し、反復作業を効率化します。',
+  },
+  {
+    number: '03',
+    title: '必要な部分から段階導入',
+    description:
+      '最初から巨大な仕組みを作らず、負担や効果の大きい業務から着手します。利用状況を見ながら広げ、初期費用と導入リスクを抑えます。',
+  },
+]
+
+const connectedWork = ['入力', '確認', '承認', '作業', '集計', '次の判断']
+
+const industries = ['飲食', '介護', '建設', '製造', '宿泊', '自動車']
+
+const commonProblems = [
+  '紙・FAX・Excelをなくしたい',
+  '既製ツールが自社業務に合わない',
+  '転記や二重入力をなくしたい',
+  'バラバラの業務を一つにつなぎたい',
+  '独自の承認・計算・帳票をシステム化したい',
+  '自社専用のツールを作りたい',
+]
+
+const homeProcess = [
+  {
+    number: '01',
+    title: '相談',
+    description: '現在の業務や、作りたいものを確認します。',
+  },
+  {
+    number: '02',
+    title: '設計・開発',
+    description: '必要な機能を整理し、優先度の高い部分から設計・実装します。',
+  },
+  {
+    number: '03',
+    title: '導入・改善',
+    description: '利用状況を確認し、運用しながら改善・拡張します。',
+  },
+]
 
 export function HomePage() {
   return (
     <>
       <PageMeta
         title="TEIRESIAS合同会社 | 会社ごとの業務に合わせたシステム開発"
-        description="FAX、電話、Excelに分かれた業務をひとつにつなぐ。受発注、在庫、製造、販売、損益まで、会社固有の業務に合わせたシステムを設計・開発します。"
+        description="既製ツールでは合わなかった業務を、思い通りのシステムへ。TEIRESIAS合同会社は、従来の個別開発より費用と期間を抑えながら、会社固有の業務システムを設計・開発します。"
       />
       <main id="main-content" tabIndex={-1}>
-      <section className="hero-section">
-        <CodeBackdrop />
-        <div className="hero-section__veil" aria-hidden="true" />
-        <div className="container hero-section__content">
-          <p className="eyebrow">CUSTOM BUSINESS SYSTEMS</p>
-          <h1>会社を、システムに合わせない。</h1>
-          <p className="hero-section__lead">
-            FAX、電話、Excelに分かれた業務を、ひとつにつなぐ。
-            <br />
-            受発注、在庫、製造、販売、損益まで。
-            <br />
-            会社固有の業務に合わせたシステムを設計・開発します。
-          </p>
-          <div className="hero-section__actions">
-            <Link className="button button--primary" to="/services">
-              事業内容を見る
-            </Link>
-            <Link className="button button--outline" to="/contact">
-              開発について相談する
+        <section className="hero-section">
+          <CodeBackdrop />
+          <div className="hero-section__veil" aria-hidden="true" />
+          <div className="container hero-section__content">
+            <p className="eyebrow">CUSTOM BUSINESS SYSTEMS</p>
+            <h1>
+              <span>思い通りのシステムを、</span>
+              <span className="hero-section__title-support">
+                もっと現実的な
+                <span className="hero-section__no-break">費用と期間で。</span>
+              </span>
+            </h1>
+            <p className="hero-section__lead">
+              既製ツールでは、自社の業務に合わない。
+              <br />
+              一方で、従来の個別開発は高額で、完成まで時間がかかる。
+              <br />
+              TEIRESIASは会社ごとに個別設計し、開発工程を効率化することで、費用と期間を大幅に抑えます。
+            </p>
+            <div className="hero-section__actions">
+              <Link className="button button--primary" to="/contact">
+                業務のシステム化について相談する
+              </Link>
+              <Link className="button button--outline" to="/approach">
+                TEIRESIASの開発を見る
+              </Link>
+            </div>
+          </div>
+          <a className="scroll-guide" href="#problem">
+            <span>SCROLL</span>
+            <i aria-hidden="true" />
+          </a>
+        </section>
+
+        <section className="home-section problem-section" id="problem">
+          <div className="container">
+            <SectionHeading
+              eyebrow="THE PROBLEM"
+              title={'欲しいシステムを、\n費用と期間で諦めない。'}
+              description="既製ツールと従来の個別開発。その間に、システム化できないまま残ってきた業務があります。"
+            />
+            <div className="problem-comparison">
+              <article>
+                <p className="problem-comparison__label">READY-MADE TOOLS</p>
+                <h3>既製ツールは、完全には合わない。</h3>
+                <p>
+                  共通業務へすぐ導入できる一方、会社固有の承認、計算、帳票、例外処理までは合わせにくいことがあります。
+                </p>
+              </article>
+              <article>
+                <p className="problem-comparison__label">
+                  CONVENTIONAL DEVELOPMENT
+                </p>
+                <h3>個別開発は、高額・長期になりやすい。</h3>
+                <p>
+                  思い通りに作れても、大人数の体制と長い開発工程が必要になれば、費用と期間が導入の壁になります。
+                </p>
+              </article>
+            </div>
+            <p className="problem-conclusion">
+              その結果、必要な業務が紙やExcel、複数ツールの組み合わせで残る。TEIRESIASは、個別設計の自由度を保ちながら、その間を埋めます。
+            </p>
+          </div>
+        </section>
+
+        <section className="home-section why-section">
+          <div className="container">
+            <SectionHeading
+              eyebrow="WHY TEIRESIAS"
+              title={'個別開発の、\nコスト構造を変える。'}
+              description="安さや速さを目的にするのではなく、思い通りに作るための開発工程そのものを見直します。"
+            />
+            <div className="why-list">
+              {reasons.map((reason) => (
+                <article key={reason.number}>
+                  <p className="why-list__number">{reason.number}</p>
+                  <h3>{reason.title}</h3>
+                  <p>{reason.description}</p>
+                </article>
+              ))}
+            </div>
+            <Link className="text-link section-link" to="/approach">
+              開発方針を詳しく見る
             </Link>
           </div>
-        </div>
-        <a className="scroll-guide" href="#gap">
-          <span>SCROLL</span>
-          <i aria-hidden="true" />
-        </a>
-      </section>
+        </section>
 
-      <section className="section section--paper" id="gap">
-        <div className="container split-intro">
-          <SectionHeading
-            eyebrow="THE GAP"
-            title={'大企業には、業務を支える専用システムがある。\n多くの中小企業には、FAXとExcelが残っている。'}
-          />
-          <div className="split-intro__body">
-            <p>
-              紙、FAX、電話、Excel。それぞれの方法が悪いのではなく、業務が分散し、同じ情報を何度も入力・確認することが問題です。
-            </p>
-            <p>
-              TEIRESIASは、会社ごとに残っている独自の業務を整理し、ひとつのWebシステムへつなげます。
-            </p>
-            <ul className="gap-list">
-              {gapItems.map((item, index) => (
+        <section className="home-section philosophy-section">
+          <div className="container philosophy-section__grid">
+            <div>
+              <p className="eyebrow">DESIGN PHILOSOPHY</p>
+              <h2>会社を、システムに合わせない。</h2>
+              <p>
+                一つの作業だけをWeb化しても、その前後が紙やExcelのままなら、転記や確認は残ります。TEIRESIASは、入力した情報が次の業務へどうつながるかまで設計します。
+              </p>
+            </div>
+            <ol className="connected-work" aria-label="情報がつながる業務の例">
+              {connectedWork.map((item, index) => (
                 <li key={item}>
                   <span>{String(index + 1).padStart(2, '0')}</span>
                   {item}
                 </li>
               ))}
+            </ol>
+          </div>
+        </section>
+
+        <section className="home-section industries-section">
+          <div className="container industries-section__grid">
+            <SectionHeading
+              eyebrow="FIELDS OF WORK"
+              title="デジタル化が難しかった現場へ。"
+              description="飲食、介護、建設、製造、宿泊、自動車など。独自業務が多く、既製ツールだけではデジタル化しにくい現場も個別設計の対象です。業界を限定するものではありません。"
+            />
+            <ul className="industry-list">
+              {industries.map((industry, index) => (
+                <li key={industry}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  {industry}
+                </li>
+              ))}
             </ul>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="section business-flow-section">
-        <div className="container">
-          <SectionHeading
-            eyebrow="BUSINESS FLOW"
-            title={'一つの業務だけでなく、\nその前後までつなぐ。'}
-            description="一度入力した情報が次の業務へ渡る構造をつくり、転記や確認の重複を減らします。必要な領域から始め、会社の運用に合わせて接続範囲を広げます。"
-          />
-          <ol className="business-flow">
-            {businessFlow.map((item) => (
-              <li key={item.number}>
-                <span>{item.number}</span>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section className="section section--ivory">
-        <div className="container">
-          <SectionHeading
-            eyebrow="OUR APPROACH"
-            title={'フォーマットではなく、\nその会社の業務からつくる。'}
-            description="既存システムの使い方を会社に合わせてもらうのではなく、現在の業務を理解し、その会社が実際に利用しやすい形を設計します。"
-          />
-          <div className="approach-grid">
-            {approaches.map((approach) => (
-              <article className="approach-item" key={approach.number}>
-                <span>{approach.number}</span>
-                <h3>{approach.title}</h3>
-                <p>{approach.description}</p>
-              </article>
-            ))}
-          </div>
-          <Link className="text-link section-link" to="/approach">
-            開発方針を見る
-          </Link>
-        </div>
-      </section>
-
-      <section className="section section--paper">
-        <div className="container">
-          <SectionHeading
-            eyebrow="SERVICES"
-            title={'業務を、一つずつではなく、\nつながる仕組みとして設計する。'}
-            description="代表的な開発領域です。業種を限定せず、現在の運用と課題から必要な範囲を組み立てます。"
-          />
-          <div className="services-grid">
-            {services.map((service) => (
-              <ServiceCard key={service.number} service={service} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section case-section">
-        <div className="container case-section__grid">
-          <div className="case-section__number" aria-hidden="true">
-            13
-            <small>STORES</small>
-          </div>
-          <div className="case-section__content">
+        <section className="home-section common-problems-section">
+          <div className="container">
             <SectionHeading
-              eyebrow="CASE STUDY"
-              title={'13店舗のFAX発注を、\nひとつのWebシステムへ。'}
+              eyebrow="COMMON PROBLEMS"
+              title="こんな業務から、ご相談ください。"
             />
-            <p className="case-section__description">
-              食品小売・惣菜販売企業で行われていたFAX中心の発注業務をWeb化。
-              店舗からの発注、本部での確認、商品・店舗マスタ、帳票、販売管理を段階的に統合しています。
-            </p>
-            <dl className="case-facts">
-              <div>
-                <dt>業種</dt>
-                <dd>食品小売・惣菜販売</dd>
-              </div>
-              <div>
-                <dt>対象</dt>
-                <dd>13店舗・本部</dd>
-              </div>
-              <div>
-                <dt>開発範囲</dt>
-                <dd>発注、承認、マスタ、帳票、販売管理</dd>
-              </div>
-              <div>
-                <dt>状態</dt>
-                <dd>開発・導入中</dd>
-              </div>
-            </dl>
-            <Link className="text-link" to="/cases/order-management">
-              事例を見る
+            <ul className="common-problems">
+              {commonProblems.map((problem, index) => (
+                <li key={problem}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  {problem}
+                </li>
+              ))}
+            </ul>
+            <Link className="text-link section-link" to="/services">
+              具体的な開発領域を見る
             </Link>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="section section--ivory">
-        <div className="container">
-          <SectionHeading
-            eyebrow="PROCESS"
-            title="業務の確認から、導入後の改善まで。"
-          />
-          <ol className="process-list">
-            {processSteps.map((step, index) => (
-              <li key={step}>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <strong>{step}</strong>
-              </li>
-            ))}
-          </ol>
-          <Link className="text-link section-link" to="/process">
-            開発の流れを見る
-          </Link>
-        </div>
-      </section>
+        <section className="home-section home-case-section">
+          <div className="container home-case-section__grid">
+            <div className="home-case-section__intro">
+              <p className="eyebrow">CASE STUDY</p>
+              <p className="home-case-section__status">
+                DEVELOPMENT IN PROGRESS
+              </p>
+              <h2>会社固有の発注業務を、段階的にWebシステムへ。</h2>
+              <p>
+                食品小売・惣菜販売企業の13店舗と本部で、FAX中心の発注業務をWeb化。承認、商品・店舗マスタ、帳票、販売管理まで、現在の運用に合わせて設計・開発しています。
+              </p>
+              <Link className="text-link" to="/cases/order-management">
+                事例を見る
+              </Link>
+            </div>
+            <div className="case-proof">
+              <p className="eyebrow">PRICE PROOF</p>
+              <dl>
+                <div>
+                  <dt>既存ベンダー見積</dt>
+                  <dd>約1,500万円</dd>
+                </div>
+                <div>
+                  <dt>TEIRESIAS提案</dt>
+                  <dd>500万円</dd>
+                </div>
+              </dl>
+              <p>
+                当該案件における比較です。開発範囲や費用は案件ごとに異なります。
+              </p>
+            </div>
+          </div>
+        </section>
 
-      <section className="section section--paper">
-        <div className="container company-section">
-          <SectionHeading eyebrow="COMPANY" title="会社情報" />
-          <dl className="company-facts">
-            <div>
-              <dt>会社名</dt>
-              <dd>TEIRESIAS合同会社</dd>
-            </div>
-            <div>
-              <dt>所在地</dt>
-              <dd>神奈川県横浜市</dd>
-            </div>
-            <div>
-              <dt>事業内容</dt>
-              <dd>システム開発・業務システムの設計および運用支援</dd>
-            </div>
-          </dl>
-          <Link className="text-link section-link" to="/company">
-            会社情報を見る
-          </Link>
-        </div>
-      </section>
+        <section className="home-section home-process-section">
+          <div className="container home-process-section__grid">
+            <SectionHeading
+              eyebrow="PROCESS"
+              title="必要な部分から、前へ進める。"
+            />
+            <ol className="home-process">
+              {homeProcess.map((step) => (
+                <li key={step.number}>
+                  <span>{step.number}</span>
+                  <div>
+                    <h3>{step.title}</h3>
+                    <p>{step.description}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <Link className="text-link" to="/process">
+              開発の流れを見る
+            </Link>
+          </div>
+        </section>
 
-      <section className="contact-cta">
-        <div className="container contact-cta__inner">
-          <p className="eyebrow">CONTACT</p>
-          <h2>標準サービスでは対応できなかった業務について、ご相談ください。</h2>
-          <p>
-            紙、FAX、Excel、既存サービスに分散している業務を確認し、会社に合った形へ整理・設計します。
-          </p>
-          <Link className="button button--primary" to="/contact">
-            開発について相談する
-          </Link>
-        </div>
-      </section>
+        <section className="home-company-section">
+          <div className="container home-company-section__inner">
+            <p className="eyebrow">COMPANY</p>
+            <h2>TEIRESIAS合同会社</h2>
+            <p>神奈川県横浜市</p>
+            <p>システム開発・業務システムの設計および運用支援</p>
+            <Link className="text-link" to="/company">
+              会社情報を見る
+            </Link>
+          </div>
+        </section>
+
+        <section className="contact-cta home-final-cta">
+          <div className="container contact-cta__inner">
+            <p className="eyebrow">CONTACT</p>
+            <h2>この業務、システムにできる？ そこからご相談ください。</h2>
+            <p>
+              作りたいシステムが決まっていても、まだ課題しか見えていなくても構いません。現在の業務を確認し、何をどうシステム化するべきかから整理します。
+            </p>
+            <Link className="button button--primary" to="/contact">
+              業務のシステム化について相談する
+            </Link>
+          </div>
+        </section>
       </main>
     </>
   )

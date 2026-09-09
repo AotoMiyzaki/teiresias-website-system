@@ -17,6 +17,7 @@ import { ProcessPage } from './pages/ProcessPage'
 import { ServicesPage } from './pages/ServicesPage'
 import { ContactPage, PrivacyPage } from './pages/ContentPages'
 import './App.css'
+import './styles/pages/home.css'
 
 function RouteEffects() {
   const { pathname } = useLocation()

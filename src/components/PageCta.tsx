@@ -6,13 +6,13 @@ export function PageCta() {
       <div className="container detail-cta__inner">
         <p className="eyebrow">CONTACT</p>
         <h2 id="detail-cta-title">
-          標準サービスでは対応できなかった業務について、ご相談ください。
+          この業務、システムにできる？ そこからご相談ください。
         </h2>
         <p>
-          紙、FAX、Excel、既存サービスに分散している業務を確認し、会社に合った形へ整理・設計します。
+          作りたいシステムが決まっていても、まだ課題しか見えていなくても構いません。現在の業務から、何をどうシステム化するべきかを整理します。
         </p>
         <Link className="button button--primary" to="/contact">
-          開発について相談する
+          業務のシステム化について相談する
         </Link>
       </div>
     </section>

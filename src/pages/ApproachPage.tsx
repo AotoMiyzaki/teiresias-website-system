@@ -60,6 +60,22 @@ const teiresiasPoints = [
   '導入後の業務変更にも対応する',
 ]
 
+const humanResponsibilities = [
+  '業務理解',
+  '要件整理',
+  '設計判断',
+  '優先順位',
+  '運用設計',
+]
+
+const developmentSupport = [
+  '実装',
+  'コード検証',
+  'テスト支援',
+  '修正',
+  '反復作業',
+]
+
 const suitableOperations = [
   '紙、FAX、Excelでしか管理できていない',
   '複数店舗や部署の情報を本部で把握できない',
@@ -138,6 +154,46 @@ export function ApproachPage() {
                 <NumberedFeature key={principle.number} {...principle} />
               ))}
             </div>
+          </div>
+        </section>
+
+        <section
+          className="detail-section development-efficiency"
+          aria-labelledby="development-efficiency-title"
+        >
+          <div className="container">
+            <header className="detail-section__heading">
+              <p className="eyebrow">DEVELOPMENT EFFICIENCY</p>
+              <h2 id="development-efficiency-title">
+                開発工程そのものを、効率化する。
+              </h2>
+              <p>
+                TEIRESIASでは、AIを含む最新の開発環境を、設計、実装、検証、修正に活用します。目的は人間の判断をなくすことではなく、判断した内容を形にする工程を効率化することです。
+              </p>
+            </header>
+            <div className="responsibility-grid">
+              <article>
+                <p className="responsibility-grid__label">HUMAN DECISION</p>
+                <h3>人が理解し、判断すること</h3>
+                <ul>
+                  {humanResponsibilities.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+              <article>
+                <p className="responsibility-grid__label">AI &amp; TOOLS</p>
+                <h3>開発環境で効率化すること</h3>
+                <ul>
+                  {developmentSupport.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+            </div>
+            <p className="development-efficiency__note">
+              AIそのものを商品として提供するのではなく、会社固有の業務を思い通りのシステムへ変えるための手段として活用します。
+            </p>
           </div>
         </section>
 

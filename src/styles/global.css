@@ -65,8 +65,10 @@ h2,
 h3 {
   font-family: var(--font-serif);
   font-weight: 600;
+  line-break: strict;
   line-height: 1.45;
   letter-spacing: 0.025em;
+  word-break: auto-phrase;
 }
 
 :focus-visible {
