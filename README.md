@@ -1,52 +1,77 @@
 # TEIRESIAS Website
 
-React / Vite / TypeScriptの公式サイト。Node.js 24で開発・検証。
+React / Vite / TypeScript。正式本番URL: **https://teiresias.jp/**。
+本番はロリポップ！。WordPress・Node・Vercel Function・SMTPパスワードは本番実行に不要です。
 
-## Local development
+## Build targets
 
-`npm ci`、`npm run dev -- --host 127.0.0.1 --port 5173`。
-Viteの開発用middlewareが本番と同じContact handlerを呼び出します。
-本番はVercelの `api/contact.ts` で実行します。
-ローカル起動シェルにSMTP設定がなければ、有効な送信は503になります。
+Node.js 24で npm ci 後、次を実行します。
 
-## Contact environment variables
+| コマンド | 用途 | フォーム送信先 | dist |
+| --- | --- | --- | --- |
+| npm run build | ロリポップ本番 | /api/contact.php | PHP・.htaccessを含む |
+| npm run build:vercel | Vercel Preview | /api/contact | PHP・.htaccessを含まない |
+| npm run dev -- --host 127.0.0.1 --port 5173 | ローカル開発 | /api/contact | 開発サーバー |
 
-Vercel Project → Settings → Environment Variablesで設定し、設定後に対象環境のdeploymentを作成してください。
-Previewで先に検証し、Productionはユーザーの公開承認後に反映します。
-値をコード・README・Git・ログに書かないでください。
+vercel.jsonはbuild:vercelを明示。出力先はどちらもdistなので、FTPへ渡す直前には
+**npm run build && npm run verify:dist** を実行してください。
+PHPはpublic配下に置かず、Lolipop buildだけでlolipop/から取り込みます。
+vite previewはPHPを実行できません。ダウンロードを実行成功と誤認しないでください。
 
-- SMTP_HOST
-- SMTP_PORT
-- SMTP_USER
-- SMTP_PASS
-- SMTP_SECURE
-- CONTACT_FROM_EMAIL
-- CONTACT_TO_EMAIL（任意。未設定時は指定された問い合わせ窓口へ送信）
+## Lolipop Contact
 
-SMTP_SECUREはメール事業者の案内に従って設定します。暗黙TLSを使わない設定ではSTARTTLSを必須とし、TLSのない通信は拒否します。差出人はメール事業者で送信許可されたアドレスを登録してください。宛先の既定値はinfo@teiresias.jpです。Reply-Toのみ問い合わせ者になります。自動返信・DB保存は行いません。
+POST /api/contact.php → PHP標準mail() → サーバーのメール配送機能。
+PHP 8.x・mbstring必須。ロリポップ管理画面でサポート中のPHP版を選んでください。
+From / To / envelope senderはinfo@teiresias.jp固定、検証済み入力メールがReply-Toです。
+件名はUTF-8 MIME、本文はUTF-8/base64。Composer・外部メールサービスは不要です。
+mail()のtrueは配送処理の受理であり、受信箱への到達保証ではありません。
+自動返信・独自DB保存はありません。
 
-本番の受信確認は、認証情報設定後にTESTと分かる問い合わせを1件送信し、受信箱・迷惑メールを確認してください。API成功はSMTPサーバーの受理を意味し、受信箱への最終配達を保証するものではありません。
+### Security
 
-## Request protection
+- POST、JSON Content-Type、宣言値・読み取り双方の24KiB制限。
+- 必須・型・文字数（JSと同じUTF-16単位）・trim・メール・電話・カテゴリ・同意を検証。
+- honeypot、ヘッダー注入・制御文字を拒否。From/sendmail引数は入力に依存しません。
+- Originはhttps://teiresias.jpに完全一致必須。欠落/null/cross-siteは拒否。CORS許可なし。
+- REMOTE_ADDRのハッシュで5回/10分。転送IPヘッダーは信頼しません。
+- PHP一時領域の0600ファイルへハッシュ・回数・期限のみ保存。本文・生IPは保存しません。
+  flock排他、最大1000キー、期限切れは次回アクセス時に掃除。保存不可は503。
+  分散環境全体の厳密な制限ではなく、プロキシでIP共通になる環境は実機確認が必要です。
+- 送信失敗502、利用不可503、過剰送信429。内部詳細・個人情報のレスポンス/ログ出力なし。
+- サーバー自体のアクセスログは事業者の設定に従います。
 
-POST /api/contactのみ。JSON、24KiB上限、必須・型・文字数・制御文字・メール形式・同意をサーバー側で検証します。honeypot、同一originチェック、cross-site拒否、インスタンスごとのIPハッシュによる5回/10分制限があります。
+## Vercel Preview only
 
-メモリ内の制限はVercelの複数インスタンスや再起動をまたぐ厳密な制限ではありません。攻撃対策が必要になった場合はVercel Firewall側の /api/contact に対する制限か、共有ストアによる制限を追加してください。現時点で有料サービスや共有DBは追加していません。フォーム本文や個人情報はログ出力しません。
+Node/Nodemailer APIはPreview・ローカル用に維持。
+必要ならPreview環境にSMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_SECURE,
+CONTACT_FROM_EMAIL, CONTACT_TO_EMAIL（任意）を設定します。
+ロリポップの必要設定ではありません。値をGit・ログ・会話へ貼らないでください。
+未設定Previewのフォームは503です。今回、環境変数設定・実送信は行いません。
 
 ## Validation
 
-- `npm test` — transportを差し替えたAPI・validationテスト。実メールは送信しません。
-- `npm run build` — frontendとAPIのTypeScript検査、Vite build。
-- `npm run lint`
-- `git diff --check`
-- `npm audit`
+- npm run build
+- npm run lint
+- npm test（既存Nodeテスト。送信スタブ、実メールなし）
+- npm run verify:dist（成果物allowlist、PHP/.htaccess一致、endpoint、本番URL、sitemap9件）
+- git diff --check
+- npm audit
+- php -l lolipop/api/contact.php
+- php -l dist/api/contact.php
+- npm run test:php（29ケース。送信・レート保存をスタブ化、実メールなし）
+
+末尾3コマンドはPHP CLI・mbstringがある環境で実行してください。
 
 ## SEO / publishing
 
-Vercelのproject domainで確認したURLをindex.html、PageMeta.tsx、public/robots.txt、public/sitemap.xmlで使用しています。独自ドメインへの切替時はこれらを一緒に更新してください。
+index.html、PageMeta.tsx、robots.txt、sitemap.xmlはteiresias.jpを使用。
+title・description・既存JSON-LD会社情報は維持。
+SPAのページ固有metaはJS実行後に更新され、JS非実行クローラーにはHome metaが見えます。
+不明ページはsoft 404（HTTP200 + React404/noindex）。欠損api/assetsは.htaccessでHTTP404。
+SSR/prerender/専用og:imageは未追加です。
 
-React SPAのため、各routeのtitle・description・canonical・404のnoindexはJavaScript実行後に更新されます。JavaScriptを実行しないSNS crawler等にはHomeのHTML metaが見えます。未知URLもSPA fallbackによりHTTP 200となるsoft 404の制約があります。prerenderやframework migrationは今回行っていません。専用og:imageは未追加です。
+FTP・バックアップ・公開後確認は [公開手順](docs/lolipop-production.md) を参照。
+公開前にPrivacyと実際のメール保管・削除運用を責任者が確認してください。
 
-公開前にPrivacy本文を運用責任者が確認し、SMTP事業者との契約・運用に合っていることを確認してください。
-
-実装参考: [Vercel Vite Functions](https://vercel.com/docs/frameworks/frontend/vite)、[Nodemailer SMTP](https://nodemailer.com/smtp)。
+参考: [ロリポップPHP/SENDMAIL](https://lolipop.jp/manual/hp/cgi/)、
+[PHP mail](https://www.php.net/manual/en/function.mail.php)。

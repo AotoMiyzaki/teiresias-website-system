@@ -26,7 +26,7 @@ export function PageMeta({ title, description, noIndex = false }: PageMetaProps)
     updateMetaContent('meta[name="twitter:description"]', description)
     updateMetaContent('meta[name="robots"]', noIndex ? 'noindex, follow' : 'index, follow')
     const canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]')
-    const url = new URL(pathname, 'https://teiresias-website-system.vercel.app').href
+    const url = new URL(pathname, 'https://teiresias.jp').href
     if (canonical) {
       if (noIndex) canonical.removeAttribute('href')
       else canonical.href = url

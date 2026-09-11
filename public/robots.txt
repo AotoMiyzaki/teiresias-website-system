@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://teiresias-website-system.vercel.app/sitemap.xml
+Sitemap: https://teiresias.jp/sitemap.xml

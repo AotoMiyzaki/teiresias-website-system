@@ -6,6 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:vercel": "tsc -b && vite build --mode vercel",
+    "test:php": "php tests/contact-php.test.php",
+    "verify:dist": "node scripts/verify-dist.mjs",
     "lint": "oxlint",
     "test": "node --test tests/*.test.mjs",
     "preview": "vite preview"

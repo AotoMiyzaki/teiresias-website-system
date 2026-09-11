@@ -65,7 +65,7 @@ export function ContactPage() {
     controller.current = new AbortController();
     const timeout = window.setTimeout(() => controller.current?.abort(), 35000);
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch(import.meta.env.VITE_CONTACT_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(checked.data),
@@ -366,7 +366,7 @@ const privacySections = [
   ],
   [
     "外部サービスと情報の取扱い",
-    "本サイトのホスティングにはVercelを利用します。お問い合わせ内容は、メール配信に利用する事業者を経由して当社へ送信されます。本サイト独自の問い合わせデータベースには保存しませんが、対応に必要な期間、当社のメール環境等で管理します。外部サービスでは、運用・安全確保のために通信ログ等が処理される場合があります。また、文字の表示にGoogle Fontsを利用しており、フォント取得時に通信情報がGoogleへ送信されます。",
+    "本サイトの本番環境にはロリポップ！レンタルサーバーを利用します。お問い合わせ内容は、サーバーのPHPメール送信機能を通じて当社へ送信されます。本サイト独自の問い合わせデータベースには保存しませんが、対応に必要な期間、当社のメール環境等で管理します。外部サービスでは、運用・安全確保のために通信ログ等が処理される場合があります。また、文字の表示にGoogle Fontsを利用しており、フォント取得時に通信情報がGoogleへ送信されます。",
   ],
   [
     "安全管理",
