@@ -11,6 +11,18 @@ export function Header() {
   const menuWasOpen = useRef(false)
 
   useEffect(() => {
+    const desktop = window.matchMedia('(min-width: 901px)')
+    const closeOnDesktop = () => {
+      if (desktop.matches) {
+        menuWasOpen.current = false
+        setMenuOpen(false)
+      }
+    }
+    desktop.addEventListener('change', closeOnDesktop)
+    return () => desktop.removeEventListener('change', closeOnDesktop)
+  }, [])
+
+  useEffect(() => {
     const updateHeader = () => setScrolled(window.scrollY > 48)
     updateHeader()
     window.addEventListener('scroll', updateHeader, { passive: true })
@@ -106,7 +118,7 @@ export function Header() {
               }
               key={item.path}
               to={item.path}
-              onClick={() => setMenuOpen(false)}
+              onClick={() => { menuWasOpen.current = item.path === pathname; setMenuOpen(false) }}
             >
               {item.label}
             </NavLink>

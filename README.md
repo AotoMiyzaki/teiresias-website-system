@@ -1,32 +1,52 @@
-# React + TypeScript + Vite
+# TEIRESIAS Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+React / Vite / TypeScriptの公式サイト。Node.js 24で開発・検証。
 
-Currently, two official plugins are available:
+## Local development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+`npm ci`、`npm run dev -- --host 127.0.0.1 --port 5173`。
+Viteの開発用middlewareが本番と同じContact handlerを呼び出します。
+本番はVercelの `api/contact.ts` で実行します。
+ローカル起動シェルにSMTP設定がなければ、有効な送信は503になります。
 
-## React Compiler
+## Contact environment variables
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Vercel Project → Settings → Environment Variablesで設定し、設定後に対象環境のdeploymentを作成してください。
+Previewで先に検証し、Productionはユーザーの公開承認後に反映します。
+値をコード・README・Git・ログに書かないでください。
 
-## Expanding the Oxlint configuration
+- SMTP_HOST
+- SMTP_PORT
+- SMTP_USER
+- SMTP_PASS
+- SMTP_SECURE
+- CONTACT_FROM_EMAIL
+- CONTACT_TO_EMAIL（任意。未設定時は指定された問い合わせ窓口へ送信）
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+SMTP_SECUREはメール事業者の案内に従って設定します。暗黙TLSを使わない設定ではSTARTTLSを必須とし、TLSのない通信は拒否します。差出人はメール事業者で送信許可されたアドレスを登録してください。宛先の既定値はinfo@teiresias.jpです。Reply-Toのみ問い合わせ者になります。自動返信・DB保存は行いません。
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+本番の受信確認は、認証情報設定後にTESTと分かる問い合わせを1件送信し、受信箱・迷惑メールを確認してください。API成功はSMTPサーバーの受理を意味し、受信箱への最終配達を保証するものではありません。
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Request protection
+
+POST /api/contactのみ。JSON、24KiB上限、必須・型・文字数・制御文字・メール形式・同意をサーバー側で検証します。honeypot、同一originチェック、cross-site拒否、インスタンスごとのIPハッシュによる5回/10分制限があります。
+
+メモリ内の制限はVercelの複数インスタンスや再起動をまたぐ厳密な制限ではありません。攻撃対策が必要になった場合はVercel Firewall側の /api/contact に対する制限か、共有ストアによる制限を追加してください。現時点で有料サービスや共有DBは追加していません。フォーム本文や個人情報はログ出力しません。
+
+## Validation
+
+- `npm test` — transportを差し替えたAPI・validationテスト。実メールは送信しません。
+- `npm run build` — frontendとAPIのTypeScript検査、Vite build。
+- `npm run lint`
+- `git diff --check`
+- `npm audit`
+
+## SEO / publishing
+
+Vercelのproject domainで確認したURLをindex.html、PageMeta.tsx、public/robots.txt、public/sitemap.xmlで使用しています。独自ドメインへの切替時はこれらを一緒に更新してください。
+
+React SPAのため、各routeのtitle・description・canonical・404のnoindexはJavaScript実行後に更新されます。JavaScriptを実行しないSNS crawler等にはHomeのHTML metaが見えます。未知URLもSPA fallbackによりHTTP 200となるsoft 404の制約があります。prerenderやframework migrationは今回行っていません。専用og:imageは未追加です。
+
+公開前にPrivacy本文を運用責任者が確認し、SMTP事業者との契約・運用に合っていることを確認してください。
+
+実装参考: [Vercel Vite Functions](https://vercel.com/docs/frameworks/frontend/vite)、[Nodemailer SMTP](https://nodemailer.com/smtp)。

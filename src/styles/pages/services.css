@@ -230,15 +230,23 @@
 
 .inventory-cycle li:last-child::after {
   position: absolute;
-  right: 18px;
-  bottom: -18px;
-  left: -200%;
-  height: 17px;
-  border-right: 1px solid var(--color-bronze);
+  top: -56px;
+  bottom: 56px;
+  left: -14px;
+  width: 14px;
+  border-top: 1px solid var(--color-bronze);
   border-bottom: 1px solid var(--color-bronze);
   border-left: 1px solid var(--color-bronze);
   content: '';
   opacity: 0.45;
+}
+
+@media (min-width: 601px) {
+  .inventory-cycle li:nth-child(4) { grid-column: 3; grid-row: 2; }
+  .inventory-cycle li:nth-child(5) { grid-column: 2; grid-row: 2; }
+  .inventory-cycle li:nth-child(6) { grid-column: 1; grid-row: 2; }
+  .inventory-cycle li:nth-child(4)::after,
+  .inventory-cycle li:nth-child(5)::after { right: auto; left: -4px; }
 }
 
 .inventory-changes {
@@ -287,7 +295,7 @@
   content: '';
 }
 
-.development-scope {
+.services-page .development-scope {
   background: var(--color-paper);
   border-top: 1px solid var(--color-line);
 }

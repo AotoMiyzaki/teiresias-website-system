@@ -213,7 +213,7 @@ export function HomePage() {
             <div className="home-case-section__intro">
               <p className="eyebrow">CASE STUDY</p>
               <p className="home-case-section__status">
-                DEVELOPMENT IN PROGRESS
+                開発・導入中 / DEVELOPMENT IN PROGRESS
               </p>
               <h2>会社固有の発注業務を、段階的にWebシステムへ。</h2>
               <p>

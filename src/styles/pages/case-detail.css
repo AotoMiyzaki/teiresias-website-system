@@ -102,6 +102,7 @@
 
 .case-detail-page .development-scope {
   background: var(--color-ivory);
+  border-top: 1px solid var(--color-line);
 }
 
 .system-structure__grid {
