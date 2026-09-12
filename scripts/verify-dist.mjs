@@ -9,7 +9,7 @@ const walk = (path) => readdirSync(new URL(path, root)).flatMap((name) => {
   return statSync(new URL(file, root)).isDirectory() ? walk(file) : [file]
 })
 const files = walk('dist')
-const expected = ['index.html', '.htaccess', 'api/contact.php', 'robots.txt', 'sitemap.xml', 'favicon.svg']
+const expected = ['index.html', '.htaccess', 'api/contact.php', 'robots.txt', 'sitemap.xml', 'favicon.png']
 for (const path of expected) assert(files.includes(`dist/${path}`), `Missing ${path}`)
 for (const file of files) {
   const relative = file.slice(5)

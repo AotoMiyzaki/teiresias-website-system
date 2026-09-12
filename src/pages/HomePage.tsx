@@ -244,10 +244,15 @@ export function HomePage() {
 
         <section className="home-section home-process-section">
           <div className="container home-process-section__grid">
-            <SectionHeading
-              eyebrow="PROCESS"
-              title="必要な部分から、前へ進める。"
-            />
+            <div className="home-process-section__intro">
+              <SectionHeading
+                eyebrow="PROCESS"
+                title={"必要な部分から、\n前へ進める。"}
+              />
+              <Link className="text-link" to="/process">
+                開発の流れを見る
+              </Link>
+            </div>
             <ol className="home-process">
               {homeProcess.map((step) => (
                 <li key={step.number}>
@@ -259,9 +264,6 @@ export function HomePage() {
                 </li>
               ))}
             </ol>
-            <Link className="text-link" to="/process">
-              開発の流れを見る
-            </Link>
           </div>
         </section>
 

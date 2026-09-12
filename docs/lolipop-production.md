@@ -15,7 +15,7 @@ teiresias/dist/にはしません。公開フォルダ自体は削除しませ�
 
 - .htaccess
 - index.html
-- favicon.svg
+- favicon.png
 - robots.txt
 - sitemap.xml
 - assets/（index-<hash>.js、index-<hash>.css）
@@ -51,7 +51,7 @@ WordPress DB削除・メールアカウント削除は切替に不要です。
 
 1. FTPクライアントで隠しファイルを表示。接続先・公開フォルダを再確認。
 2. バックアップ後、確認済みの旧WordPress項目だけ除去。
-3. assets/、api/、favicon.svg、robots.txt、sitemap.xmlを転送。
+3. assets/、api/、favicon.png、robots.txt、sitemap.xmlを転送。
 4. index.htmlと新しい.htaccessを転送。WordPress rewriteを混ぜない。
 5. 全8ファイルの転送完了を確認。権限はロリポップの環境別案内に従い、777等にはしない。
 6. ブラウザキャッシュを無効にし、下記URLを直接入力・再読込して確認。
@@ -73,7 +73,7 @@ Apache互換設定は実機確認が必要。500発生時はエラーログと�
 - https://teiresias.jp/privacy
 - https://teiresias.jp/robots.txt
 - https://teiresias.jp/sitemap.xml
-- https://teiresias.jp/favicon.svg
+- https://teiresias.jp/favicon.png
 - https://teiresias.jp/api/contact.php （GETは405 JSON。PHPソース表示/ダウンロードは不具合）
 - https://teiresias.jp/api/not-found （HTTP404。SPA HTMLではない）
 - https://teiresias.jp/not-found （React404/noindex。HTTP200の制約あり）

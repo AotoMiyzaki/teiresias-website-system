@@ -442,18 +442,27 @@
 }
 
 .home-process-section {
-  padding-block: 82px;
+  padding-block: 74px;
   background: var(--color-ivory);
 }
 
 .home-process-section__grid {
   display: grid;
-  grid-template-columns: minmax(240px, 0.55fr) minmax(0, 1.45fr);
-  gap: 24px 80px;
+  align-items: start;
+  grid-template-columns: minmax(330px, 0.66fr) minmax(0, 1.34fr);
+  gap: 64px;
 }
 
 .home-process-section .section-heading {
   margin: 0;
+}
+
+.home-process-section .section-heading h2 {
+  white-space: pre;
+}
+
+.home-process-section__intro .text-link {
+  margin-top: 30px;
 }
 
 .home-process {
@@ -466,8 +475,8 @@
 }
 
 .home-process li {
-  min-height: 185px;
-  padding: 25px 24px;
+  min-height: 160px;
+  padding: 21px 22px;
   border-right: 1px solid var(--color-line);
   border-bottom: 1px solid var(--color-line);
 }
@@ -477,7 +486,7 @@
 }
 
 .home-process h3 {
-  margin: 31px 0 10px;
+  margin: 24px 0 9px;
   font-size: 19px;
 }
 
@@ -485,12 +494,7 @@
   margin: 0;
   color: var(--color-muted);
   font-size: 13px;
-}
-
-.home-process-section__grid > .text-link {
-  grid-column: 2;
-  margin-top: 14px;
-  justify-self: start;
+  line-height: 1.75;
 }
 
 .home-company-section {
@@ -581,6 +585,14 @@
     padding-block: 82px;
   }
 
+  .home-process-section {
+    padding-block: 74px;
+  }
+
+  .home-process-section .section-heading h2 {
+    white-space: pre-line;
+  }
+
   .why-list article {
     grid-template-columns: 55px minmax(210px, 0.75fr) minmax(0, 1fr);
     gap: 22px;
@@ -596,11 +608,6 @@
 
   .industries-section .section-heading {
     margin-bottom: 0;
-  }
-
-  .home-process-section__grid > .text-link {
-    grid-column: 1;
-    margin-top: -18px;
   }
 
   .home-company-section__inner {
@@ -662,6 +669,10 @@
 
   .home-section {
     padding-block: 72px;
+  }
+
+  .home-process-section {
+    padding-block: 64px;
   }
 
   .home-section .section-heading {
