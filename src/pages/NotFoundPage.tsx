@@ -7,6 +7,7 @@ export function NotFoundPage() {
       <PageMeta
         title="ページが見つかりません | TEIRESIAS合同会社"
         description="お探しのページは見つかりませんでした。"
+        noIndex
       />
       <main id="main-content" className="not-found" tabIndex={-1}>
         <div className="container not-found__inner">
@@ -16,7 +17,7 @@ export function NotFoundPage() {
           <p>
             URLが変更されたか、ページが削除された可能性があります。
           </p>
-          <Link className="button button--dark" to="/">
+          <Link className="button button--primary" to="/">
             トップページへ戻る
           </Link>
         </div>

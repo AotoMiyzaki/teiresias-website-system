@@ -8,6 +8,16 @@ export function CodeBackdrop() {
           {[...lines, ...lines, ...lines, ...lines].join('\n')}
         </pre>
       ))}
+      <div className="code-structure">
+        <p>workflow.schema</p>
+        <div className="code-structure__track">
+          <span>INPUT</span>
+          <span>RULES</span>
+          <span>APPROVAL</span>
+          <span>OUTPUT</span>
+        </div>
+        <small>data / decision / operation</small>
+      </div>
     </div>
   )
 }

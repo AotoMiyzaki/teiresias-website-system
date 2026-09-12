@@ -1,0 +1,16 @@
+DirectoryIndex index.html
+Options -Indexes -MultiViews
+
+RewriteEngine On
+RewriteBase /
+
+# Real files/directories (including PHP) are never sent to the SPA.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Missing API/assets must be real 404s, never an HTML success response.
+RewriteRule ^(?:api|assets)(?:/|$) - [R=404,L]
+
+# Root deployment: client-side React Router handles page routes.
+RewriteRule ^ index.html [L]

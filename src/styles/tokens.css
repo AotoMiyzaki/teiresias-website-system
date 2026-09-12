@@ -1,14 +1,14 @@
 :root {
-  --color-ink: #161513;
-  --color-charcoal: #20201e;
-  --color-ivory: #f5f1e8;
-  --color-paper: #fbfaf6;
-  --color-bronze: #9a6842;
-  --color-bronze-dark: #70492e;
-  --color-bronze-light: #c58c61;
-  --color-line: #d8d1c5;
-  --color-muted: #706c65;
-  --color-white: #ffffff;
+  --color-ink: #1B1A18;
+  --color-charcoal: #20201E;
+  --color-ivory: #F5F1E8;
+  --color-paper: #FBFAF6;
+  --color-bronze: #9A6842;
+  --color-bronze-dark: #70492E;
+  --color-bronze-light: #B8835B;
+  --color-line: #D8D1C5;
+  --color-muted: #6E6961;
+  --color-white: #FFFFFF;
   --font-serif: 'Noto Serif JP', 'Yu Mincho', 'Hiragino Mincho ProN', serif;
   --font-sans: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic',
     sans-serif;

@@ -1,12 +1,26 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { navigationItems } from '../data/siteContent'
 
 export function Header() {
   const { pathname } = useLocation()
-  const isHome = pathname === '/'
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
+  const navigationRef = useRef<HTMLElement>(null)
+  const menuWasOpen = useRef(false)
+
+  useEffect(() => {
+    const desktop = window.matchMedia('(min-width: 901px)')
+    const closeOnDesktop = () => {
+      if (desktop.matches) {
+        menuWasOpen.current = false
+        setMenuOpen(false)
+      }
+    }
+    desktop.addEventListener('change', closeOnDesktop)
+    return () => desktop.removeEventListener('change', closeOnDesktop)
+  }, [])
 
   useEffect(() => {
     const updateHeader = () => setScrolled(window.scrollY > 48)
@@ -27,19 +41,51 @@ export function Header() {
       if (event.key === 'Escape') setMenuOpen(false)
     }
 
+    const trapFocus = (event: KeyboardEvent) => {
+      if (event.key !== 'Tab') return
+      const focusable = [
+        menuButtonRef.current,
+        ...Array.from(
+          navigationRef.current?.querySelectorAll<HTMLAnchorElement>('a') ?? [],
+        ),
+      ].filter(
+        (element): element is HTMLAnchorElement | HTMLButtonElement =>
+          element !== null,
+      )
+
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault()
+        last?.focus()
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault()
+        first?.focus()
+      }
+    }
+
     document.body.style.overflow = 'hidden'
     document.addEventListener('keydown', closeOnEscape)
+    document.addEventListener('keydown', trapFocus)
+    navigationRef.current?.querySelector<HTMLAnchorElement>('a')?.focus()
+    menuWasOpen.current = true
 
     return () => {
       document.body.style.overflow = previousOverflow
       document.removeEventListener('keydown', closeOnEscape)
+      document.removeEventListener('keydown', trapFocus)
     }
   }, [menuOpen])
 
-  const darkHeader = isHome && !scrolled && !menuOpen
+  useEffect(() => {
+    if (!menuOpen && menuWasOpen.current) {
+      menuButtonRef.current?.focus()
+      menuWasOpen.current = false
+    }
+  }, [menuOpen])
 
   return (
-    <header className={`site-header${darkHeader ? ' site-header--dark' : ''}`}>
+    <header className={`site-header${scrolled ? ' site-header--scrolled' : ''}`}>
       <div className="site-header__inner">
         <Link className="wordmark" to="/" aria-label="TEIRESIAS トップページ">
           <span>TEIRESIAS</span>
@@ -47,6 +93,7 @@ export function Header() {
         </Link>
 
         <button
+          ref={menuButtonRef}
           className="menu-button"
           type="button"
           aria-label={menuOpen ? 'メニューを閉じる' : 'メニューを開く'}
@@ -59,6 +106,7 @@ export function Header() {
         </button>
 
         <nav
+          ref={navigationRef}
           id="primary-navigation"
           className={`primary-nav${menuOpen ? ' primary-nav--open' : ''}`}
           aria-label="メインナビゲーション"
@@ -70,7 +118,7 @@ export function Header() {
               }
               key={item.path}
               to={item.path}
-              onClick={() => setMenuOpen(false)}
+              onClick={() => { menuWasOpen.current = item.path === pathname; setMenuOpen(false) }}
             >
               {item.label}
             </NavLink>

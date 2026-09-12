@@ -65,8 +65,10 @@ h2,
 h3 {
   font-family: var(--font-serif);
   font-weight: 600;
+  line-break: strict;
   line-height: 1.45;
   letter-spacing: 0.025em;
+  word-break: auto-phrase;
 }
 
 :focus-visible {
@@ -109,10 +111,6 @@ h3 {
   letter-spacing: 0.18em;
 }
 
-.eyebrow--light {
-  color: var(--color-bronze-light);
-}
-
 .button {
   display: inline-flex;
   min-height: 50px;
@@ -131,36 +129,26 @@ h3 {
     color 180ms ease;
 }
 
-.button--light {
-  color: var(--color-charcoal);
-  background: var(--color-ivory);
-  border-color: var(--color-ivory);
-}
-
-.button--light:hover {
-  background: var(--color-white);
-  border-color: var(--color-white);
-}
-
-.button--outline-light {
+.button--primary {
   color: var(--color-white);
-  border-color: rgb(255 255 255 / 42%);
-  background: rgb(255 255 255 / 2%);
-}
-
-.button--outline-light:hover {
-  border-color: var(--color-white);
-  background: rgb(255 255 255 / 8%);
-}
-
-.button--dark {
-  color: var(--color-white);
-  background: var(--color-charcoal);
-  border-color: var(--color-charcoal);
-}
-
-.button--dark:hover {
   background: var(--color-bronze-dark);
+  border-color: var(--color-bronze-dark);
+}
+
+.button--primary:hover {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+}
+
+.button--outline {
+  color: var(--color-ink);
+  background: rgb(251 250 246 / 44%);
+  border-color: var(--color-bronze);
+}
+
+.button--outline:hover {
+  color: var(--color-bronze-dark);
+  background: var(--color-paper);
   border-color: var(--color-bronze-dark);
 }
 
@@ -183,16 +171,6 @@ h3 {
 .text-link:hover {
   color: var(--color-bronze-dark);
   border-color: var(--color-bronze-dark);
-}
-
-.text-link--light {
-  color: var(--color-white);
-  border-color: rgb(255 255 255 / 52%);
-}
-
-.text-link--light:hover {
-  color: var(--color-white);
-  border-color: var(--color-white);
 }
 
 @media (max-width: 900px) {

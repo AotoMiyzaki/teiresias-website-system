@@ -128,6 +128,30 @@ export function OrderManagementCasePage() {
           </div>
         </section>
 
+        <section className="case-price" aria-labelledby="case-price-title">
+          <div className="container case-price__grid">
+            <div>
+              <p className="eyebrow">PRICE PROOF</p>
+              <h2 id="case-price-title">
+                会社固有の業務に合わせて、開発費用を見直す。
+              </h2>
+            </div>
+            <dl>
+              <div>
+                <dt>既存ベンダー見積</dt>
+                <dd>約1,500万円</dd>
+              </div>
+              <div>
+                <dt>TEIRESIAS提案</dt>
+                <dd>500万円</dd>
+              </div>
+            </dl>
+            <p>
+              当該案件における比較です。開発範囲や費用は案件ごとに異なります。
+            </p>
+          </div>
+        </section>
+
         <section className="detail-section" aria-labelledby="before-title">
           <div className="container">
             <header className="detail-section__heading">
@@ -262,10 +286,7 @@ export function OrderManagementCasePage() {
           </div>
         </section>
 
-        <PageCta
-          title="紙やFAXに残る業務を、現在の運用から整理します。"
-          description="入力する人、確認する人、例外処理を確認し、最初にシステム化する範囲を決めます。"
-        />
+        <PageCta />
       </main>
     </>
   )
